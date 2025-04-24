@@ -1,0 +1,60 @@
+testSuite ---> TestCase --> Test Steps
+spec file (cy.js)---> describe blocks(test suites) ---> it blocks (test)
+
+-----------------------------------------------------------------------------------------------------------
+npx cypress open ==> open the npx UI
+npx cypress run ==> run the existing tests
+npx cypress run --headed ==> run with header 
+npx cypress run --spec 'copy relative path' ==> run specific test file 
+npx cypress run --browser chrome ==> choose browser, otherwise use default browser Electron
+
+-----------------------------------------------------------------------------------------------------------
+Locators: CSS Selector, XPATH
+CSS Selector
+------------
+cy.get(Locator)
+
+tag id
+tag class
+tag attribute
+tag class attribute
+
+tag#id
+tag.class
+tag[attribute='value']
+tag.class[attribute='value']
+
+XPath
+----------
+cy.xpath(XPath)
+
+npm install -D cypress-xpath
+
+------------------------------------------------------------------------------------------------------------
+Cypress Assertions
+1) Implicit assertions
+    should 
+    and 
+
+---main key words:
+contain
+include
+exist
+have.length
+have.value
+
+--example:
+cy.get(LOCATOR).should('be.visible') -- check visibility of element
+cy.get(LOCATOR).check().should('be.checked') -- select the radio button, and check the button is checked. 
+cy.get(LOCATOR).select(dropdown).should('have.value','selected dropdown value')  -- selct and check the selected dropdownvalue 
+
+2) Explicit assertions
+    expect  -BDD
+    assert  -TDD
+
+--------------------------------------------------------------------------------------
+1) File upload package: 
+$ npm install --save-dev cypress-file-upload 
+
+2) Drag and drop package:
+$ npm install --save-dev @4tw/cypress-drag-drop
