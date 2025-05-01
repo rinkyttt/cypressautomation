@@ -9,6 +9,7 @@
   "author": "Yifan",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.17.1",
     "cypress": "^14.3.0",
     "cypress-xpath": "^2.0.1"
   },
