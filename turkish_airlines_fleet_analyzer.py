@@ -14,6 +14,10 @@ from typing import List, Dict, Optional, Tuple
 import os
 from dataclasses import dataclass, asdict
 from collections import defaultdict
+import pandas as pd
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.utils.dataframe import dataframe_to_rows
 
 
 @dataclass
@@ -97,7 +101,7 @@ class FlightRadar24API:
             print(f"Error fetching fleet data: {e}")
             return []
     
-    def get_aircraft_flights(self, registration: str, aircraft_type: str, days_back: int = 365) -> List[FlightData]:
+    def get_aircraft_flights(self, registration: str, aircraft_type: str, days_back: int = 30) -> List[FlightData]:
         """
         Retrieve flight history for a specific aircraft
         
@@ -188,7 +192,7 @@ class TurkishAirlinesFleetAnalyzer:
         self.all_flights = []
         self.aircraft_stats = {}
         
-    def analyze_fleet(self, days_back: int = 365) -> Dict[str, AircraftStats]:
+    def analyze_fleet(self, days_back: int = 30) -> Dict[str, AircraftStats]:
         """
         Analyze entire Turkish Airlines fleet
         
@@ -361,6 +365,274 @@ class TurkishAirlinesFleetAnalyzer:
                 json.dump(flight_dicts, jsonfile, indent=2, ensure_ascii=False)
             print(f"Flight data exported to {flights_filename}")
     
+    def export_to_excel(self, filename: str = "turkish_airlines_fleet_analysis.xlsx"):
+        """Export comprehensive data to Excel with multiple worksheets and formatting"""
+        if not self.aircraft_stats and not self.all_flights:
+            print("No data to export")
+            return
+        
+        # Create workbook
+        wb = Workbook()
+        
+        # Remove default sheet
+        wb.remove(wb.active)
+        
+        # Define styles
+        header_font = Font(bold=True, color="FFFFFF")
+        header_fill = PatternFill(start_color="366092", end_color="366092", fill_type="solid")
+        border = Border(
+            left=Side(style='thin'),
+            right=Side(style='thin'),
+            top=Side(style='thin'),
+            bottom=Side(style='thin')
+        )
+        center_align = Alignment(horizontal="center", vertical="center")
+        
+        # 1. Aircraft Statistics Sheet
+        if self.aircraft_stats:
+            ws_stats = wb.create_sheet("Aircraft Statistics")
+            
+            # Convert to DataFrame for easier manipulation
+            stats_data = []
+            for stats in self.aircraft_stats.values():
+                stats_data.append({
+                    'Registration': stats.registration,
+                    'Aircraft Type': stats.aircraft_type,
+                    'Total Flights': stats.total_flights,
+                    'Total Flight Hours': round(stats.total_flight_time_hours, 1),
+                    'Total Flight Minutes': stats.total_flight_time_minutes,
+                    'Avg Flight Time (min)': round(stats.average_flight_time_minutes, 1),
+                    'First Flight Date': stats.first_flight_date,
+                    'Last Flight Date': stats.last_flight_date,
+                    'Unique Routes': stats.unique_routes,
+                    'Most Common Route': stats.most_common_route,
+                    'Top Route Count': stats.most_common_route_count
+                })
+            
+            df_stats = pd.DataFrame(stats_data)
+            
+            # Sort by total flight hours descending
+            df_stats = df_stats.sort_values('Total Flight Hours', ascending=False)
+            
+            # Add headers
+            for r in dataframe_to_rows(df_stats, index=False, header=True):
+                ws_stats.append(r)
+            
+            # Format headers
+            for cell in ws_stats[1]:
+                cell.font = header_font
+                cell.fill = header_fill
+                cell.alignment = center_align
+                cell.border = border
+            
+            # Format data cells
+            for row in ws_stats.iter_rows(min_row=2):
+                for cell in row:
+                    cell.border = border
+                    if cell.column in [3, 4, 5, 6, 9, 11]:  # Numeric columns
+                        cell.alignment = Alignment(horizontal="center")
+            
+            # Auto-adjust column widths
+            for column in ws_stats.columns:
+                max_length = 0
+                column_letter = column[0].column_letter
+                for cell in column:
+                    try:
+                        if len(str(cell.value)) > max_length:
+                            max_length = len(str(cell.value))
+                    except:
+                        pass
+                adjusted_width = min(max_length + 2, 20)
+                ws_stats.column_dimensions[column_letter].width = adjusted_width
+        
+        # 2. Aircraft Type Summary Sheet
+        if self.aircraft_stats:
+            ws_types = wb.create_sheet("Aircraft Type Summary")
+            
+            # Calculate type statistics
+            type_stats = defaultdict(lambda: {'count': 0, 'flights': 0, 'hours': 0, 'active': 0})
+            for stats in self.aircraft_stats.values():
+                aircraft_type = stats.aircraft_type
+                type_stats[aircraft_type]['count'] += 1
+                type_stats[aircraft_type]['flights'] += stats.total_flights
+                type_stats[aircraft_type]['hours'] += stats.total_flight_time_hours
+                if stats.total_flights > 0:
+                    type_stats[aircraft_type]['active'] += 1
+            
+            # Create type summary data
+            type_data = []
+            for aircraft_type, data in sorted(type_stats.items()):
+                avg_flights = data['flights'] / data['active'] if data['active'] > 0 else 0
+                avg_hours = data['hours'] / data['active'] if data['active'] > 0 else 0
+                type_data.append({
+                    'Aircraft Type': aircraft_type,
+                    'Total Aircraft': data['count'],
+                    'Active Aircraft': data['active'],
+                    'Total Flights': data['flights'],
+                    'Total Hours': round(data['hours'], 1),
+                    'Avg Flights/Aircraft': round(avg_flights, 1),
+                    'Avg Hours/Aircraft': round(avg_hours, 1)
+                })
+            
+            df_types = pd.DataFrame(type_data)
+            df_types = df_types.sort_values('Total Hours', ascending=False)
+            
+            # Add to worksheet
+            for r in dataframe_to_rows(df_types, index=False, header=True):
+                ws_types.append(r)
+            
+            # Format headers
+            for cell in ws_types[1]:
+                cell.font = header_font
+                cell.fill = header_fill
+                cell.alignment = center_align
+                cell.border = border
+            
+            # Format data cells
+            for row in ws_types.iter_rows(min_row=2):
+                for cell in row:
+                    cell.border = border
+                    if cell.column > 1:  # Numeric columns
+                        cell.alignment = Alignment(horizontal="center")
+            
+            # Auto-adjust column widths
+            for column in ws_types.columns:
+                max_length = 0
+                column_letter = column[0].column_letter
+                for cell in column:
+                    try:
+                        if len(str(cell.value)) > max_length:
+                            max_length = len(str(cell.value))
+                    except:
+                        pass
+                adjusted_width = min(max_length + 2, 20)
+                ws_types.column_dimensions[column_letter].width = adjusted_width
+        
+        # 3. Top Performers Sheet
+        if self.aircraft_stats:
+            ws_top = wb.create_sheet("Top Performers")
+            
+            # Top 20 by flights
+            top_flights = sorted(self.aircraft_stats.values(), key=lambda x: x.total_flights, reverse=True)[:20]
+            top_hours = sorted(self.aircraft_stats.values(), key=lambda x: x.total_flight_time_hours, reverse=True)[:20]
+            
+            # Add section headers and data
+            ws_top.append(["TOP 20 AIRCRAFT BY FLIGHT COUNT"])
+            ws_top.append(["Rank", "Registration", "Aircraft Type", "Total Flights", "Total Hours", "Avg Hours/Flight"])
+            
+            for i, stats in enumerate(top_flights, 1):
+                avg_flight_hours = stats.total_flight_time_hours / stats.total_flights if stats.total_flights > 0 else 0
+                ws_top.append([
+                    i, stats.registration, stats.aircraft_type, 
+                    stats.total_flights, round(stats.total_flight_time_hours, 1), 
+                    round(avg_flight_hours, 1)
+                ])
+            
+            # Add spacing
+            ws_top.append([])
+            ws_top.append([])
+            
+            # Top by hours
+            ws_top.append(["TOP 20 AIRCRAFT BY FLIGHT HOURS"])
+            ws_top.append(["Rank", "Registration", "Aircraft Type", "Total Hours", "Total Flights", "Unique Routes"])
+            
+            for i, stats in enumerate(top_hours, 1):
+                ws_top.append([
+                    i, stats.registration, stats.aircraft_type,
+                    round(stats.total_flight_time_hours, 1), stats.total_flights, stats.unique_routes
+                ])
+            
+            # Format the sheet
+            # Section headers
+            ws_top['A1'].font = Font(bold=True, size=14)
+            ws_top['A24'].font = Font(bold=True, size=14)
+            
+            # Table headers
+            for cell in ws_top[2]:
+                if cell.value:
+                    cell.font = header_font
+                    cell.fill = header_fill
+                    cell.alignment = center_align
+                    cell.border = border
+            
+            for cell in ws_top[25]:
+                if cell.value:
+                    cell.font = header_font
+                    cell.fill = header_fill
+                    cell.alignment = center_align
+                    cell.border = border
+            
+            # Auto-adjust column widths
+            for column in ws_top.columns:
+                max_length = 0
+                column_letter = column[0].column_letter
+                for cell in column:
+                    try:
+                        if len(str(cell.value)) > max_length:
+                            max_length = len(str(cell.value))
+                    except:
+                        pass
+                adjusted_width = min(max_length + 2, 15)
+                ws_top.column_dimensions[column_letter].width = adjusted_width
+        
+        # 4. All Flights Sheet (if data exists)
+        if self.all_flights:
+            ws_flights = wb.create_sheet("All Flights")
+            
+            # Convert flights to DataFrame
+            flights_data = []
+            for flight in self.all_flights:
+                flights_data.append({
+                    'Registration': flight.registration,
+                    'Aircraft Type': flight.aircraft_type,
+                    'Flight Number': flight.flight_number,
+                    'Departure': flight.departure_airport,
+                    'Arrival': flight.arrival_airport,
+                    'Departure Time': flight.departure_time,
+                    'Arrival Time': flight.arrival_time,
+                    'Duration': flight.flight_duration,
+                    'Duration (min)': flight.duration_minutes,
+                    'Status': flight.status,
+                    'Date': flight.date
+                })
+            
+            df_flights = pd.DataFrame(flights_data)
+            
+            # Sort by date and departure time
+            df_flights = df_flights.sort_values(['Date', 'Departure Time'])
+            
+            # Add to worksheet
+            for r in dataframe_to_rows(df_flights, index=False, header=True):
+                ws_flights.append(r)
+            
+            # Format headers
+            for cell in ws_flights[1]:
+                cell.font = header_font
+                cell.fill = header_fill
+                cell.alignment = center_align
+                cell.border = border
+            
+            # Auto-adjust column widths
+            for column in ws_flights.columns:
+                max_length = 0
+                column_letter = column[0].column_letter
+                for cell in column:
+                    try:
+                        if len(str(cell.value)) > max_length:
+                            max_length = len(str(cell.value))
+                    except:
+                        pass
+                adjusted_width = min(max_length + 2, 25)
+                ws_flights.column_dimensions[column_letter].width = adjusted_width
+        
+        # Save the workbook
+        wb.save(filename)
+        print(f"Excel file exported to {filename}")
+        
+        # Print summary of what was exported
+        sheet_names = [sheet.title for sheet in wb.worksheets]
+        print(f"Excel file contains {len(sheet_names)} worksheets: {', '.join(sheet_names)}")
+    
     def print_detailed_summary(self):
         """Print comprehensive fleet analysis summary"""
         if not self.aircraft_stats:
@@ -455,10 +727,10 @@ def main():
     analyzer = TurkishAirlinesFleetAnalyzer(api_key)
     
     # Get user preferences
-    try:
-        days_back = int(input("Enter number of days to look back (default 365): ") or "365")
-    except ValueError:
-        days_back = 365
+            try:
+            days_back = int(input("Enter number of days to look back (default 30): ") or "30")
+        except ValueError:
+            days_back = 30
     
     print(f"\nAnalyzing Turkish Airlines fleet for the last {days_back} days...")
     print("This may take a while as we're processing the entire fleet...")
@@ -476,6 +748,7 @@ def main():
         analyzer.export_aircraft_stats_to_csv()
         analyzer.export_flights_to_csv()
         analyzer.export_to_json()
+        analyzer.export_to_excel()
         
         print("\nFleet analysis complete!")
         print("Files created:")
@@ -483,6 +756,7 @@ def main():
         print("- turkish_airlines_all_flights.csv (all flight records)")
         print("- aircraft_stats.json (statistics in JSON format)")
         print("- all_flights.json (flight records in JSON format)")
+        print("- turkish_airlines_fleet_analysis.xlsx (comprehensive Excel workbook)")
     else:
         print("No fleet data was retrieved. Please check your API key and try again.")
 
