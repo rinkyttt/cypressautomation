@@ -1,0 +1,567 @@
+{
+  "timestamp": "2025-08-13T17:56:14.691917",
+  "source": "OpenSky Network (Free API)",
+  "count": 40,
+  "flights": [
+    {
+      "icao24": "781e5b",
+      "callsign": "CTJ3868",
+      "country": "China",
+      "position": {
+        "latitude": 34.4379,
+        "longitude": 135.2241,
+        "altitude_m": null
+      },
+      "on_ground": true,
+      "velocity_ms": 4.89,
+      "heading_deg": 315,
+      "last_contact": 1755109541
+    },
+    {
+      "icao24": "87aad8",
+      "callsign": "UNJYO2",
+      "country": "Japan",
+      "position": {
+        "latitude": 35.5493,
+        "longitude": 139.7985,
+        "altitude_m": null
+      },
+      "on_ground": true,
+      "velocity_ms": 10.29,
+      "heading_deg": 149.06,
+      "last_contact": 1755109542
+    },
+    {
+      "icao24": "780cb6",
+      "callsign": "CCA818",
+      "country": "China",
+      "position": {
+        "latitude": 37.4083,
+        "longitude": 126.0877,
+        "altitude_m": 11612.88
+      },
+      "on_ground": false,
+      "velocity_ms": 234.6,
+      "heading_deg": 269.37,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "899020",
+      "callsign": "CAL004",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 33.7078,
+        "longitude": 135.3591,
+        "altitude_m": 10058.4
+      },
+      "on_ground": false,
+      "velocity_ms": 258.18,
+      "heading_deg": 54.98,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "89901e",
+      "callsign": "CAL023",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 32.6228,
+        "longitude": 132.7108,
+        "altitude_m": 11582.4
+      },
+      "on_ground": false,
+      "velocity_ms": 258.13,
+      "heading_deg": 241.03,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "89901d",
+      "callsign": "CAL007",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 34.7539,
+        "longitude": 137.1285,
+        "altitude_m": 10972.8
+      },
+      "on_ground": false,
+      "velocity_ms": 256.57,
+      "heading_deg": 250.8,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "899035",
+      "callsign": "EVA010",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 34.6117,
+        "longitude": 139.0564,
+        "altitude_m": 9448.8
+      },
+      "on_ground": false,
+      "velocity_ms": 250.78,
+      "heading_deg": 67.7,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "899030",
+      "callsign": "EVA055",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 35.1895,
+        "longitude": 138.7585,
+        "altitude_m": 10972.8
+      },
+      "on_ground": false,
+      "velocity_ms": 256.97,
+      "heading_deg": 253.12,
+      "last_contact": 1755109544
+    },
+    {
+      "icao24": "71c006",
+      "callsign": "KAL086",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 37.5522,
+        "longitude": 141.1559,
+        "altitude_m": 10972.8
+      },
+      "on_ground": false,
+      "velocity_ms": 247.38,
+      "heading_deg": 273.46,
+      "last_contact": 1755109544
+    },
+    {
+      "icao24": "71c046",
+      "callsign": "KAL277",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 37.7175,
+        "longitude": 139.8773,
+        "altitude_m": 10058.4
+      },
+      "on_ground": false,
+      "velocity_ms": 264.79,
+      "heading_deg": 94.68,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "71c042",
+      "callsign": "KAL8426",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 34.2994,
+        "longitude": 129.5508,
+        "altitude_m": 11582.4
+      },
+      "on_ground": false,
+      "velocity_ms": 248.02,
+      "heading_deg": 338.97,
+      "last_contact": 1755109410
+    },
+    {
+      "icao24": "8990e1",
+      "callsign": "EVA035",
+      "country": "Taiwan",
+      "position": {
+        "latitude": 36.5667,
+        "longitude": 143.4883,
+        "altitude_m": 10972.8
+      },
+      "on_ground": false,
+      "velocity_ms": 262.22,
+      "heading_deg": 249.68,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "7817b4",
+      "callsign": "CSN658",
+      "country": "China",
+      "position": {
+        "latitude": 33.3012,
+        "longitude": 130.1521,
+        "altitude_m": 10972.8
+      },
+      "on_ground": false,
+      "velocity_ms": 256.2,
+      "heading_deg": 249.67,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "a6aab5",
+      "callsign": "DAL27",
+      "country": "United States",
+      "position": {
+        "latitude": 37.5214,
+        "longitude": 126.2251,
+        "altitude_m": 914.4
+      },
+      "on_ground": false,
+      "velocity_ms": 121.39,
+      "heading_deg": 336.26,
+      "last_contact": 1755109542
+    },
+    {
+      "icao24": "71c388",
+      "callsign": "APZ132",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 37.3945,
+        "longitude": 143.6141,
+        "altitude_m": 12184.38
+      },
+      "on_ground": false,
+      "velocity_ms": 245.31,
+      "heading_deg": 275.05,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "86220c",
+      "callsign": "JAL6749",
+      "country": "Japan",
+      "position": {
+        "latitude": 37.5778,
+        "longitude": 126.3507,
+        "altitude_m": 685.8
+      },
+      "on_ground": false,
+      "velocity_ms": 71.23,
+      "heading_deg": 144.7,
+      "last_contact": 1755109542
+    },
+    {
+      "icao24": "789296",
+      "callsign": "HKE629",
+      "country": "China",
+      "position": {
+        "latitude": 34.5156,
+        "longitude": 137.8322,
+        "altitude_m": 9014.46
+      },
+      "on_ground": false,
+      "velocity_ms": 250.26,
+      "heading_deg": 245.6,
+      "last_contact": 1755109544
+    },
+    {
+      "icao24": "87304a",
+      "callsign": "ANA207",
+      "country": "Japan",
+      "position": {
+        "latitude": 37.381,
+        "longitude": 125.3869,
+        "altitude_m": 9784.08
+      },
+      "on_ground": false,
+      "velocity_ms": 240.61,
+      "heading_deg": 265.09,
+      "last_contact": 1755109542
+    },
+    {
+      "icao24": "a1c7c1",
+      "callsign": "UAL878",
+      "country": "United States",
+      "position": {
+        "latitude": 36.8566,
+        "longitude": 142.0028,
+        "altitude_m": 9448.8
+      },
+      "on_ground": false,
+      "velocity_ms": 257.55,
+      "heading_deg": 82.19,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "758525",
+      "callsign": "PAL127",
+      "country": "Philippines",
+      "position": {
+        "latitude": 41.5556,
+        "longitude": 141.2103,
+        "altitude_m": 12192
+      },
+      "on_ground": false,
+      "velocity_ms": 267.39,
+      "heading_deg": 192.22,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "a4bc76",
+      "callsign": "GTI4802",
+      "country": "United States",
+      "position": {
+        "latitude": 37.1242,
+        "longitude": 144.7579,
+        "altitude_m": 10058.4
+      },
+      "on_ground": false,
+      "velocity_ms": 248.78,
+      "heading_deg": 84.07,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "781062",
+      "callsign": "CHH7920",
+      "country": "China",
+      "position": {
+        "latitude": 35.146,
+        "longitude": 138.81,
+        "altitude_m": 7185.66
+      },
+      "on_ground": false,
+      "velocity_ms": 226.52,
+      "heading_deg": 267.79,
+      "last_contact": 1755109544
+    },
+    {
+      "icao24": "78110f",
+      "callsign": "CXA8710",
+      "country": "China",
+      "position": {
+        "latitude": 35.678,
+        "longitude": 134.0895,
+        "altitude_m": 9753.6
+      },
+      "on_ground": false,
+      "velocity_ms": 230,
+      "heading_deg": 273.98,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "a31a50",
+      "callsign": "UAL805",
+      "country": "United States",
+      "position": {
+        "latitude": 37.5153,
+        "longitude": 126.4065,
+        "altitude_m": 243.84
+      },
+      "on_ground": false,
+      "velocity_ms": 74.1,
+      "heading_deg": 144.32,
+      "last_contact": 1755109300
+    },
+    {
+      "icao24": "a31a7b",
+      "callsign": "UAL771",
+      "country": "United States",
+      "position": {
+        "latitude": 37.3872,
+        "longitude": 124.7143,
+        "altitude_m": 11612.88
+      },
+      "on_ground": false,
+      "velocity_ms": 238.28,
+      "heading_deg": 268.39,
+      "last_contact": 1755109386
+    },
+    {
+      "icao24": "88817c",
+      "callsign": "VJC821",
+      "country": "Viet Nam",
+      "position": {
+        "latitude": 32.2438,
+        "longitude": 135.1927,
+        "altitude_m": 10363.2
+      },
+      "on_ground": false,
+      "velocity_ms": 251.31,
+      "heading_deg": 231.07,
+      "last_contact": 1755109413
+    },
+    {
+      "icao24": "76cce4",
+      "callsign": "SIA34",
+      "country": "Singapore",
+      "position": {
+        "latitude": 34.8524,
+        "longitude": 141.6684,
+        "altitude_m": 11277.6
+      },
+      "on_ground": false,
+      "velocity_ms": 234.38,
+      "heading_deg": 53.03,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "87aada",
+      "callsign": "UNJYO3",
+      "country": "Japan",
+      "position": {
+        "latitude": 35.5607,
+        "longitude": 139.7712,
+        "altitude_m": null
+      },
+      "on_ground": true,
+      "velocity_ms": 8.75,
+      "heading_deg": 33.75,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "84b3c9",
+      "callsign": "APJ877",
+      "country": "Japan",
+      "position": {
+        "latitude": 35.5441,
+        "longitude": 139.7728,
+        "altitude_m": null
+      },
+      "on_ground": true,
+      "velocity_ms": 0.64,
+      "heading_deg": 157.5,
+      "last_contact": 1755109317
+    },
+    {
+      "icao24": "84b4d9",
+      "callsign": "APJ809",
+      "country": "Japan",
+      "position": {
+        "latitude": 35.714,
+        "longitude": 133.4236,
+        "altitude_m": 11590.02
+      },
+      "on_ground": false,
+      "velocity_ms": 227.33,
+      "heading_deg": 273.63,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "a5c99e",
+      "callsign": "GTI825B",
+      "country": "United States",
+      "position": {
+        "latitude": 37.6248,
+        "longitude": 141.0402,
+        "altitude_m": 9448.8
+      },
+      "on_ground": false,
+      "velocity_ms": 264.5,
+      "heading_deg": 95.24,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "ab805a",
+      "callsign": "FDX5262",
+      "country": "United States",
+      "position": {
+        "latitude": 36.4067,
+        "longitude": 143.8038,
+        "altitude_m": 9753.6
+      },
+      "on_ground": false,
+      "velocity_ms": 234.11,
+      "heading_deg": 61.52,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "aa7468",
+      "callsign": "CKS220",
+      "country": "United States",
+      "position": {
+        "latitude": 34.7437,
+        "longitude": 126.2445,
+        "altitude_m": 11582.4
+      },
+      "on_ground": false,
+      "velocity_ms": 248.45,
+      "heading_deg": 188.21,
+      "last_contact": 1755109469
+    },
+    {
+      "icao24": "86d266",
+      "callsign": "ANA106",
+      "country": "Japan",
+      "position": {
+        "latitude": 35.7305,
+        "longitude": 142.2243,
+        "altitude_m": 10523.22
+      },
+      "on_ground": false,
+      "velocity_ms": 239.69,
+      "heading_deg": 61.12,
+      "last_contact": 1755109544
+    },
+    {
+      "icao24": "8694d8",
+      "callsign": "ANA107",
+      "country": "Japan",
+      "position": {
+        "latitude": 34.6826,
+        "longitude": 141.7402,
+        "altitude_m": 7421.88
+      },
+      "on_ground": false,
+      "velocity_ms": 237.77,
+      "heading_deg": 274.09,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "868428",
+      "callsign": "AKX5662",
+      "country": "Japan",
+      "position": {
+        "latitude": 37.1964,
+        "longitude": 125.1972,
+        "altitude_m": 12214.86
+      },
+      "on_ground": false,
+      "velocity_ms": 248.04,
+      "heading_deg": 88.57,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "71be37",
+      "callsign": "KAL012",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 37.3669,
+        "longitude": 126.3785,
+        "altitude_m": 1242.06
+      },
+      "on_ground": false,
+      "velocity_ms": 110.62,
+      "heading_deg": 269.2,
+      "last_contact": 1755109539
+    },
+    {
+      "icao24": "86d572",
+      "callsign": "ANA105",
+      "country": "Japan",
+      "position": {
+        "latitude": 34.7011,
+        "longitude": 141.0809,
+        "altitude_m": 5875.02
+      },
+      "on_ground": false,
+      "velocity_ms": 225.33,
+      "heading_deg": 269.87,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "71bf10",
+      "callsign": "KAL720",
+      "country": "Republic of Korea",
+      "position": {
+        "latitude": 35.126,
+        "longitude": 139.1499,
+        "altitude_m": 6309.36
+      },
+      "on_ground": false,
+      "velocity_ms": 210.47,
+      "heading_deg": 268.6,
+      "last_contact": 1755109543
+    },
+    {
+      "icao24": "aafbdf",
+      "callsign": "AAL169",
+      "country": "United States",
+      "position": {
+        "latitude": 34.6891,
+        "longitude": 142.0972,
+        "altitude_m": 7307.58
+      },
+      "on_ground": false,
+      "velocity_ms": 229.01,
+      "heading_deg": 271.54,
+      "last_contact": 1755109543
+    }
+  ]
+}

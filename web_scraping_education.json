@@ -1,0 +1,88 @@
+{
+  "disclaimer": {
+    "disclaimer": "This is an educational example only",
+    "warning": "Direct scraping may violate Terms of Service",
+    "recommendation": "Use official APIs instead",
+    "legal_options": [
+      "Flightradar24 Official API",
+      "OpenSky Network",
+      "FlightAware AeroAPI"
+    ],
+    "educational_note": "This code demonstrates scraping concepts only",
+    "timestamp": "2025-08-13T18:00:57.942662"
+  },
+  "scraping_concepts": {
+    "http_requests": {
+      "description": "Making HTTP requests to websites",
+      "example": "requests.get('https://example.com')",
+      "note": "Always check robots.txt and Terms of Service"
+    },
+    "html_parsing": {
+      "description": "Parsing HTML content",
+      "example": "BeautifulSoup(html, 'html.parser')",
+      "note": "Look for data in HTML tags, classes, and IDs"
+    },
+    "rate_limiting": {
+      "description": "Waiting between requests to be respectful",
+      "example": "time.sleep(5)  # Wait 5 seconds",
+      "note": "Essential to avoid overwhelming servers"
+    },
+    "data_extraction": {
+      "description": "Extracting specific data from HTML",
+      "example": "soup.find('div', class_='flight-data')",
+      "note": "Target specific elements containing needed data"
+    },
+    "json_apis": {
+      "description": "Many sites have JSON endpoints",
+      "example": "requests.get('/api/flights.json')",
+      "note": "Often easier than parsing HTML"
+    },
+    "legal_considerations": {
+      "description": "Always respect Terms of Service",
+      "example": "Check robots.txt, get permission, use APIs",
+      "note": "Legal compliance is essential"
+    }
+  },
+  "legal_alternatives": {
+    "flightradar24_api": {
+      "name": "Flightradar24 Official API",
+      "url": "https://www.flightradar24.com/commercial-services/api",
+      "cost": "Paid subscription",
+      "benefits": [
+        "Legal",
+        "Reliable",
+        "High-quality data",
+        "Support"
+      ],
+      "use_case": "Commercial applications"
+    },
+    "opensky_network": {
+      "name": "OpenSky Network",
+      "url": "https://opensky-network.org/",
+      "cost": "Free",
+      "benefits": [
+        "Free",
+        "Legal",
+        "Open source",
+        "Research-friendly"
+      ],
+      "use_case": "Research and personal projects"
+    },
+    "flightaware": {
+      "name": "FlightAware AeroAPI",
+      "url": "https://flightaware.com/commercial/aeroapi/",
+      "cost": "Freemium model",
+      "benefits": [
+        "Reliable",
+        "Well-documented",
+        "Good support"
+      ],
+      "use_case": "Professional applications"
+    }
+  },
+  "conclusion": {
+    "message": "Always use official APIs when available",
+    "reminder": "Respect Terms of Service and robots.txt",
+    "recommendation": "Choose legal data sources for real projects"
+  }
+}
